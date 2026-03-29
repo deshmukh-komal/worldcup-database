@@ -32,8 +32,9 @@ echo "$($PSQL "SELECT DISTINCT name FROM teams JOIN games ON teams.team_id = gam
 echo "List of unique winning team names in the whole data set:"
 echo "$($PSQL "SELECT DISTINCT name FROM teams JOIN games ON teams.team_id = games.winner_id ORDER BY name;")"
 
-echo "Year and team name of all the champions:"
-echo "$($PSQL "SELECT year, name FROM games JOIN teams ON teams.team_id = games.winner_id WHERE round = 'Final' ORDER BY year;")"
+
+ echo "Year and team name of all the champions:"
+echo "$($PSQL "SELECT year || ' ' || name FROM games JOIN teams ON teams.team_id = games.winner_id WHERE round = 'Final' ORDER BY year;")"
 
 echo "List of teams that start with 'Co':"
 echo "$($PSQL "SELECT name FROM teams WHERE name LIKE 'Co%';")"
